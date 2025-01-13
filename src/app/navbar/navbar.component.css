@@ -1,0 +1,32 @@
+/* <a class="nav-link text-white fw-bold" routerLink="about" routerLinkActive="active_link">ABOUT</a> */
+
+a.active_link {
+    color: #19BC9C;
+    border-bottom: 2px solid #19BC9C;
+    transition: color 1s ease-in-out, border-bottom 1s ease-in-out;
+    animation: activeLinkAnimation 1s ease-in-out forwards;
+}
+
+a:hover {
+    color: #19BC9C;
+    transition: color 1s ease-in-out, border-bottom 1s ease-in-out;
+    animation: activeLinkAnimation 1s ease-in-out forwards;
+}
+
+@keyframes activeLinkAnimation {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+        box-shadow: 0 0 0 0 rgba(25, 188, 156, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+        box-shadow: 0 0 10px 0 rgba(25, 188, 156, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(25, 188, 156, 0.7);
+    }
+}

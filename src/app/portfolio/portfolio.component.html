@@ -1,0 +1,46 @@
+<h2 class="text-center text-uppercase pt-4" style="font-size: 40px; font-weight: 700; color: #2C3E50;">portfolio component</h2>
+
+<div class="d-flex justify-content-center align-items-center mb-3">
+    <div style="height: 4px; width: 80px; background-color: #2C3E50; margin: 15px 0;"></div>
+    <fa-icon [icon]="faStar" style="color: #2C3E50; margin: 0 15px;"></fa-icon>
+    <div style="height: 4px; width: 80px; background-color: #2C3E50; margin: 15px 0;"></div>
+</div>
+
+<div class="container py-4">
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+        <div class="col" *ngFor="let image of portfolioImages" style="position: relative;">
+            <div class="position-relative" (click)="$event.stopPropagation()">
+                <img [src]="image.src" [alt]="image.alt" class="w-100 rounded-3">
+                <div class="position-absolute top-0 start-0 w-100 h-100 rounded-3" 
+                     [ngClass]="{'opacity-100': image.hover, 'opacity-0': !image.hover}" 
+                     style="background-color: rgba(26, 188, 156, 0.7); transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10; cursor: pointer;" 
+                     (click)="openImageModal(image)"
+                     (mouseenter)="image.hover = true"
+                     (mouseleave)="image.hover = false">
+                    <fa-icon [icon]="faPlus" 
+                             style="color: white; font-size: 96px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);" 
+                             [ngClass]="{'scale-100 opacity-100': image.hover}"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div *ngIf="selectedImage" 
+     class="modal fade show" 
+     tabindex="-1" 
+     style="display: block; background-color: rgba(13,110,253, 0.25); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1055; transition: background-color 0.4s ease-in-out;">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content" style="background-color: transparent; border: none;">
+            <div class="modal-body text-center position-relative p-0">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-light" style="z-index: 1060;" (click)="closeImageModal()"></button>
+                <div class="d-flex justify-content-center align-items-center w-100 h-100" 
+                     style="background-color: rgba(0,0,0,0.5);">
+                    <img [src]="selectedImage.src" [alt]="selectedImage.alt" style="max-width: 60%; max-height: 60vh; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="position-fixed w-100 h-100" style="top: 0; left: 0; background-color: transparent; z-index: 1056;" (click)="closeImageModal()"></div>
+</div>
